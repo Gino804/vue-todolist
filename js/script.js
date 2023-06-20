@@ -2,6 +2,7 @@ const app = Vue.createApp({
     name: 'To Do List',
     data(){
         return {
+            newTask: "",
             tasks: [
                 {
                     id: 1,
@@ -40,6 +41,9 @@ const app = Vue.createApp({
             tasks = this.tasks.filter(task => {if(task.id !== taskId) return task});
             console.log(tasks)
             this.tasks = tasks;
+        },
+        addTask(){
+            this.tasks.push({id: this.tasks.length + 1, text: this.newTask, done: false});
         }
     }
 });
