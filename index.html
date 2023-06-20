@@ -26,7 +26,7 @@
       <ul class="list-group">
         <li v-for="task in tasks" :key="task.id"
           :class="(task.done) ? 'text-decoration-line-through' : 'text-decoration-none'"
-          class="list-group-item d-flex justify-content-between">
+          class="list-group-item d-flex justify-content-between" @click="toggleTaskDone(task.id)">
           {{ task.text }}
           <button @click="deleteTask(task.id)" type="button" class="btn-close text-end"></button>
         </li>
@@ -34,7 +34,8 @@
 
       <!-- Add task -->
       <div class="input-group mt-4">
-        <input v-model.trim="newTask" type="text" class="form-control" placeholder="Aggiungi una task" />
+        <input v-model.trim="newTask" @keyup.enter="addTask" type="text" class="form-control"
+          placeholder="Aggiungi una task" />
         <button @click="addTask" class="btn btn-outline-secondary text-success border-success" type="button"
           id="button-addon2">
           Aggiungi
