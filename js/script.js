@@ -3,6 +3,7 @@ const app = Vue.createApp({
     data(){
         return {
             newTask: '',
+            searchedText: '',
             tasks: [
                 {
                     id: 1,
@@ -37,6 +38,11 @@ const app = Vue.createApp({
             let highestId = 0;
             this.tasks.forEach(task => {if(task.id > highestId) highestId = task.id});
             return highestId;
+        },
+        filteredTasks(){
+            let filteredTasks = [];
+            filteredTasks = this.tasks.filter(task => {if(task.text.toLowerCase().includes(this.searchedText.toLowerCase())) return task});
+            return filteredTasks;
         }
     },
     methods: {

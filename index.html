@@ -22,9 +22,12 @@
     <h4 class="text-center" v-show="!tasks.length">La lista è vuota</h4>
     <div class="w-25 mx-auto">
 
+      <!-- Filter -->
+      <input v-model.trim="searchedText" type="text" class="form-control mb-4" placeholder="Cerca">
+
       <!-- To Do List -->
       <ul class="list-group">
-        <li v-for="task in tasks" :key="task.id"
+        <li v-for="task in filteredTasks" :key="task.id"
           :class="(task.done) ? 'text-decoration-line-through' : 'text-decoration-none'"
           class="list-group-item d-flex justify-content-between" @click="toggleTaskDone(task.id)">
           {{ task.text }}
